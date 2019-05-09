@@ -35,12 +35,13 @@ export default class App extends Component {
       .get(
         "http://api.giphy.com/v1/gifs/trending?api_key=D4PpoOdRYYNkQB51SYP6tH6o66yuMdcM"
       )
-      .then(function(response) {
-        // handle success
+      .then(response => {
+				// handle success
+        this.setState({ gifs: response.data.data });
       })
-      .catch(function(error) {
+      .catch(error => {
         // handle error
-        console.log(error);
+        console.log('Error fetching and parsing data', error);
       })
       .finally(function() {
         // always executed
