@@ -12,9 +12,21 @@ export default class App extends Component {
 		};
 	} 
 	
-	
+	componentDidMount() {
+		fetch(
+      "http://api.giphy.com/v1/gifs/trending?api_key=D4PpoOdRYYNkQB51SYP6tH6o66yuMdcM"
+    )
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ gifs: responseData.data });
+      })
+      .catch(error =>
+        console.log("Error fetching and parsing data", error)
+      );
+	}
 
   render() { 
+		console.log(this.state.gifs);
     return (
       <div>
         <div className="main-header">
