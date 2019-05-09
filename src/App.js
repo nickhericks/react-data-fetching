@@ -6,8 +6,13 @@ import GifList from './Components/GifList';
 export default class App extends Component {
   
   constructor() {
-    super();
-  } 
+		super();
+		this.state = {
+			gifs: []
+		};
+	} 
+	
+	
 
   render() { 
     return (
