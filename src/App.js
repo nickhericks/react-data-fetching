@@ -9,7 +9,8 @@ export default class App extends Component {
   constructor() {
 		super();
 		this.state = {
-			gifs: []
+			gifs: [],
+			loading: true
 		};
 	} 
 	
@@ -46,7 +47,10 @@ export default class App extends Component {
     //   .finally(function() {
     //     // always executed
 		//   });
-		
+
+		// -------------------------------------
+		// Run performSearch function on component mount to get data from API
+		// -------------------------------------
 		this.performSearch();
 	}
 
@@ -57,7 +61,10 @@ export default class App extends Component {
       )
       .then(response => {
         // handle success
-        this.setState({ gifs: response.data.data });
+        this.setState({ 
+					gifs: response.data.data,
+					loading: false
+				});
       })
       .catch(error => {
         // handle error
@@ -67,11 +74,6 @@ export default class App extends Component {
         // always executed
       });
 	}
-
-
-
-
-
 
 
   render() { 
@@ -85,7 +87,12 @@ export default class App extends Component {
           </div>   
         </div>    
         <div className="main-content">
-          <GifList data={this.state.gifs}/>
+					{
+						(this.state.loading)
+						? <p>Loading...</p>
+						: <GifList data={this.state.gifs}/>
+
+					}
         </div>
       </div>
     );
