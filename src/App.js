@@ -31,24 +31,26 @@ export default class App extends Component {
 		// -------------------------------------
 		// REQUEST DATA USING AXIOS
 		// -------------------------------------
-		axios
-      .get(
-        "http://api.giphy.com/v1/gifs/trending?api_key=D4PpoOdRYYNkQB51SYP6tH6o66yuMdcM"
-      )
-      .then(response => {
-				// handle success
-        this.setState({ gifs: response.data.data });
-      })
-      .catch(error => {
-        // handle error
-        console.log('Error fetching and parsing data', error);
-      })
-      .finally(function() {
-        // always executed
-      });
+		// axios
+    //   .get(
+    //     "http://api.giphy.com/v1/gifs/trending?api_key=D4PpoOdRYYNkQB51SYP6tH6o66yuMdcM"
+    //   )
+    //   .then(response => {
+		// 		// handle success
+    //     this.setState({ gifs: response.data.data });
+    //   })
+    //   .catch(error => {
+    //     // handle error
+    //     console.log('Error fetching and parsing data', error);
+    //   })
+    //   .finally(function() {
+    //     // always executed
+		//   });
+		
+		this.performSearch();
 	}
 
-	performSearch = (query) => {
+	performSearch = (query = 'dogs') => {
 		axios
       .get(
         `http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=D4PpoOdRYYNkQB51SYP6tH6o66yuMdcM`
